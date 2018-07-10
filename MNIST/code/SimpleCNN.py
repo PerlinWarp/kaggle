@@ -30,9 +30,14 @@ def prep_data(raw):
 
 train_file = "../input/train.csv"
 data = np.loadtxt(train_file, skiprows=1, delimiter=',')
+x, y = prep_data(data)
+
+
 test_file = "../input/test.csv"
 test = np.loadtxt(test_file, skiprows=1, delimiter=',')
-x, y = prep_data(data)
+test = test / 255
+num_images = test.shape[0]
+test = test.reshape(num_images,img_rows, img_cols, 1)
 
 #Specifying Model Architecture
 model = Sequential()
